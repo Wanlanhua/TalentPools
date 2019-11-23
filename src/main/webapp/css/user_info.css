@@ -1,0 +1,71 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors taojiahang (you@example.org)
+ * @date    2018-12-06 14:34:37
+ * @version $Id$
+ */
+
+body{
+	margin-top: 10px;
+	margin-left: 5px;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+
+.center-vertical{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.row-container{
+	border: 1px #f4f4f4 solid;padding: 20px;
+}
+
+.user-icon{
+	max-width: 120px; height: auto;display: block;
+}
+
+.margin-lf{
+	margin-left: 60px
+}
+
+
+.margin-top{
+	margin-top: 10px;
+}
+
+.info-border{
+	border: 1px #f4f4f4 solid; margin-top: 10px 
+}
+
+.image-out-border{
+	height: 300px;
+    border-radius: 10px;
+    border: 1px solid #dddddd;
+    padding: 10px; 
+}
+
+.image-in-border{
+	height: 280px;
+    border-radius: 10px;
+    border: 2px #e6e6e6 dashed;
+}
+
+.next-button{
+    border: none;
+    height: 50px;
+    width: 200px;
+    line-height: 50px;
+    border-radius: 4px;
+    background: #00b2be;/*6b76ff;*/
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+}

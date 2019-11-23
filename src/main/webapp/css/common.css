@@ -1,0 +1,210 @@
+body {
+    margin: 0;
+    padding: 0;
+
+}
+
+
+.fl {
+    float: left;
+}
+
+label,
+input {
+    margin-top: 20px;
+}
+
+.login-button {
+    border: none;
+    height: 55px;
+    width: 100%;
+    line-height: 55px;
+    border-radius: 4px;
+    background: #1a8afa;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.center-vertical {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.register {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+
+.inputs {
+    margin-top: 25px;
+}
+
+.progressBar {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background: #00b2be;
+    /*1a8afa;a5aeff;*/
+    margin-top: 30px;
+    justify-content: center
+}
+
+.point-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+
+.point {
+    width: 50px;
+    height: 50px;
+    color: #000;
+    background: #f7f7f7;
+    border-radius: 100px;
+    line-height: 50px;
+    font-size: 25px;
+}
+
+.point-active {
+    width: 50px;
+    height: 50px;
+    color: #f7f7f7;
+    background: #fe8a03;
+    /*c8e4fe;*/
+    border-radius: 100px;
+    line-height: 50px;
+    font-size: 25px;
+}
+
+.points {
+    width: 7px;
+    height: 7px;
+    background: #f7f7f7;
+    border-radius: 50%;
+    margin: 0 2px 0 2px;
+}
+
+/*.points{ width:10px; height:10px; border-radius:50%; background-color:#232323;}*/
+/*测试用边框*/
+.test-border {
+    border: solid 1px black;
+}
+
+.next-button {
+    border: none;
+    height: 50px;
+    width: 200px;
+    line-height: 50px;
+    border-radius: 4px;
+    background: #00b2be;
+    /*6b76ff;*/
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.registers form {
+
+    margin-top: 20px;
+    padding: 20px 10px 20px 10px;
+    border-radius: 15px;
+}
+
+.registers table {
+    table-layout: fixed;
+    border-collapse: collapse;
+
+}
+
+.registers th {
+    text-align: center
+}
+
+.registers input {
+    width: 100%;
+    margin: auto
+}
+
+/*-------------使用图片做点击事件-------------*/
+
+.wrapper {
+    display: inline-block;
+    background: url("../images/icon.png") 100% 100% no-repeat;
+    border: 2px solid black;
+    cursor: pointer
+}
+
+.wrapper input {
+    opacity: 0;
+    height: 150px;
+    width: 140px;
+}
+
+.userInfo-wrapper {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    background: url("../images/add.png") 100% 100% no-repeat;
+    background-size: contain;
+    cursor: pointer
+}
+
+.userInfo-wrapper input {
+    opacity: 0;
+    height: 150px;
+    width: 140px;
+}
+
+/*------------------------------------------*/
+
+
+.resume {
+    width: 210px;
+}
+
+.users-image {
+    height: 300px;
+    border-radius: 10px;
+    border: 1px solid #dddddd;
+    padding: 10px;
+}
+
+.user-image-div {
+    height: 280px;
+    border-radius: 10px;
+    border: 2px #e6e6e6 dashed;
+}
+
+
+.users-image-add {
+    width: 100px;
+    height: 100px;
+
+}
+
+.register-danger {
+    color: #a94442 !important;
+    font-weight: bold;
+}
+
+.register-success {
+    color: #3c763d !important;
+    font-weight: bold;
+}
+
+.table-input input {
+    width: 100px;
+}
+
+.color-red {
+    color: red;
+}

@@ -1,0 +1,119 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.border{
+    border: 1px rgb(150, 148, 148) solid;
+}
+
+.userinfo-bg{
+    height: 200px;
+    margin-top:70px;
+    background: rgb(244, 246, 249);
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    padding-top: 40px;
+    padding-left: 100px;
+}
+
+.card-bg{
+    height: 300px;
+    background: rgb(244, 246, 249);
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    padding-top: 40px;
+    padding-left: 100px;
+}
+
+.contain-photo{
+    width: 120px;
+    height: 150px;
+    /* margin-left: 20px;     */
+}
+
+ .photo{
+    max-width: 120px;
+    height: 150px;
+ }
+
+ .username{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+
+.sex{
+    width: 100%;
+    line-height: 50px;
+    height: 50px;
+    margin-top: 50px;
+}
+
+
+.kind{
+    width: 100%;
+    height: 50px;
+    line-height: 50px; 
+    float: left;
+}
+
+.age{
+    width: 100%;
+    height: 50px;
+    float: left;
+    line-height: 50px; 
+}
+
+.tel{
+    width: 100%;
+    height: 50px;
+    float: left;
+    line-height: 50px; 
+}
+
+.addres{
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+    line-height: 50px; 
+}
+
+.identify-photo{
+    width:100%;
+    height: 250px;
+    /* margin-left: 20px; */
+}
+
+.professional-photo{
+    width:100%;
+    height: 250px;
+    margin-left:110px; 
+}
+@media (min-width: 0px) and (max-width: 768px) {
+    .addres{
+        margin-top: 0;
+    }
+    .container{
+        padding-left: 15px;
+    }
+    .identify-photo{
+        margin-left: 0;
+    }
+    .professional-photo{
+        margin-top: 20px;
+        margin-left: 0;
+    }
+    .contain-photo{
+        margin-left: 0;
+    }
+    .sex{
+        margin-top: 50px;
+        margin-left: 15px;
+    }
+    .username{
+        margin-left: 15px;
+    }
+}

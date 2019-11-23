@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.talentpool.dao.EducationbackgroundMapper" >
+  <resultMap id="BaseResultMap" type="com.talentpool.po.Educationbackground" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="eusername" property="eusername" jdbcType="VARCHAR" />
+    <result column="estartdate" property="estartdate" jdbcType="VARCHAR" />
+    <result column="eenddate" property="eenddate" jdbcType="VARCHAR" />
+    <result column="schoolname" property="schoolname" jdbcType="VARCHAR" />
+    <result column="degree" property="degree" jdbcType="VARCHAR" />
+    <result column="schoollocation" property="schoollocation" jdbcType="VARCHAR" />
+    <result column="takedegree" property="takedegree" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, eusername, estartdate, eenddate, schoolname, degree, schoollocation, takedegree
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.talentpool.po.EducationbackgroundExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from educationbackground
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from educationbackground
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from educationbackground
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.talentpool.po.EducationbackgroundExample" >
+    delete from educationbackground
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.talentpool.po.Educationbackground" >
+    insert into educationbackground (id, eusername, estartdate, 
+      eenddate, schoolname, degree, 
+      schoollocation, takedegree)
+    values (#{id,jdbcType=INTEGER}, #{eusername,jdbcType=VARCHAR}, #{estartdate,jdbcType=VARCHAR}, 
+      #{eenddate,jdbcType=VARCHAR}, #{schoolname,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, 
+      #{schoollocation,jdbcType=VARCHAR}, #{takedegree,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.talentpool.po.Educationbackground" >
+    insert into educationbackground
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="eusername != null" >
+        eusername,
+      </if>
+      <if test="estartdate != null" >
+        estartdate,
+      </if>
+      <if test="eenddate != null" >
+        eenddate,
+      </if>
+      <if test="schoolname != null" >
+        schoolname,
+      </if>
+      <if test="degree != null" >
+        degree,
+      </if>
+      <if test="schoollocation != null" >
+        schoollocation,
+      </if>
+      <if test="takedegree != null" >
+        takedegree,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="eusername != null" >
+        #{eusername,jdbcType=VARCHAR},
+      </if>
+      <if test="estartdate != null" >
+        #{estartdate,jdbcType=VARCHAR},
+      </if>
+      <if test="eenddate != null" >
+        #{eenddate,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolname != null" >
+        #{schoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="schoollocation != null" >
+        #{schoollocation,jdbcType=VARCHAR},
+      </if>
+      <if test="takedegree != null" >
+        #{takedegree,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.talentpool.po.EducationbackgroundExample" resultType="java.lang.Integer" >
+    select count(*) from educationbackground
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update educationbackground
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.eusername != null" >
+        eusername = #{record.eusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.estartdate != null" >
+        estartdate = #{record.estartdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eenddate != null" >
+        eenddate = #{record.eenddate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolname != null" >
+        schoolname = #{record.schoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degree != null" >
+        degree = #{record.degree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoollocation != null" >
+        schoollocation = #{record.schoollocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takedegree != null" >
+        takedegree = #{record.takedegree,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update educationbackground
+    set id = #{record.id,jdbcType=INTEGER},
+      eusername = #{record.eusername,jdbcType=VARCHAR},
+      estartdate = #{record.estartdate,jdbcType=VARCHAR},
+      eenddate = #{record.eenddate,jdbcType=VARCHAR},
+      schoolname = #{record.schoolname,jdbcType=VARCHAR},
+      degree = #{record.degree,jdbcType=VARCHAR},
+      schoollocation = #{record.schoollocation,jdbcType=VARCHAR},
+      takedegree = #{record.takedegree,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.talentpool.po.Educationbackground" >
+    update educationbackground
+    <set >
+      <if test="eusername != null" >
+        eusername = #{eusername,jdbcType=VARCHAR},
+      </if>
+      <if test="estartdate != null" >
+        estartdate = #{estartdate,jdbcType=VARCHAR},
+      </if>
+      <if test="eenddate != null" >
+        eenddate = #{eenddate,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolname != null" >
+        schoolname = #{schoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        degree = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="schoollocation != null" >
+        schoollocation = #{schoollocation,jdbcType=VARCHAR},
+      </if>
+      <if test="takedegree != null" >
+        takedegree = #{takedegree,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.talentpool.po.Educationbackground" >
+    update educationbackground
+    set eusername = #{eusername,jdbcType=VARCHAR},
+      estartdate = #{estartdate,jdbcType=VARCHAR},
+      eenddate = #{eenddate,jdbcType=VARCHAR},
+      schoolname = #{schoolname,jdbcType=VARCHAR},
+      degree = #{degree,jdbcType=VARCHAR},
+      schoollocation = #{schoollocation,jdbcType=VARCHAR},
+      takedegree = #{takedegree,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

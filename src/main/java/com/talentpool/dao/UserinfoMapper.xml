@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.talentpool.dao.UserinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.talentpool.po.Userinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="idcardphotoz" property="idcardphotoz" jdbcType="VARCHAR" />
+    <result column="idcardphotof" property="idcardphotof" jdbcType="VARCHAR" />
+    <result column="jobphoto" property="jobphoto" jdbcType="VARCHAR" />
+    <result column="otherphoto1" property="otherphoto1" jdbcType="VARCHAR" />
+    <result column="otherphoto2" property="otherphoto2" jdbcType="VARCHAR" />
+    <result column="resume" property="resume" jdbcType="VARCHAR" />
+    <result column="speciality" property="speciality" jdbcType="VARCHAR" />
+    <result column="workplant" property="workplant" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="Head" property="head" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="gzd" property="gzd" jdbcType="VARCHAR" />
+    <result column="joindate" property="joindate" jdbcType="DATE" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="birthdate" property="birthdate" jdbcType="VARCHAR" />
+    <result column="height" property="height" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="health" property="health" jdbcType="VARCHAR" />
+    <result column="marry" property="marry" jdbcType="VARCHAR" />
+    <result column="selfcheck" property="selfcheck" jdbcType="VARCHAR" />
+    <result column="companycheck" property="companycheck" jdbcType="VARCHAR" />
+    <result column="udegree" property="udegree" jdbcType="VARCHAR" />
+    <result column="degree" property="degree" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, username, password, name, sex, contact, idcardphotoz, idcardphotof, jobphoto, 
+    otherphoto1, otherphoto2, resume, speciality, workplant, province, city, area, Head, 
+    status, gzd, joindate, idcard, nation, birthdate, height, weight, address, health, 
+    marry, selfcheck, companycheck, udegree, degree
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.talentpool.po.UserinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Userinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.talentpool.po.UserinfoExample" >
+    delete from Userinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.talentpool.po.Userinfo" >
+    insert into Userinfo (id, username, password, 
+      name, sex, contact, 
+      idcardphotoz, idcardphotof, jobphoto, 
+      otherphoto1, otherphoto2, resume, 
+      speciality, workplant, province, 
+      city, area, Head, status, 
+      gzd, joindate, idcard, 
+      nation, birthdate, height, 
+      weight, address, health, 
+      marry, selfcheck, companycheck, 
+      udegree, degree)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
+      #{idcardphotoz,jdbcType=VARCHAR}, #{idcardphotof,jdbcType=VARCHAR}, #{jobphoto,jdbcType=VARCHAR}, 
+      #{otherphoto1,jdbcType=VARCHAR}, #{otherphoto2,jdbcType=VARCHAR}, #{resume,jdbcType=VARCHAR}, 
+      #{speciality,jdbcType=VARCHAR}, #{workplant,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{head,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{gzd,jdbcType=VARCHAR}, #{joindate,jdbcType=DATE}, #{idcard,jdbcType=VARCHAR}, 
+      #{nation,jdbcType=VARCHAR}, #{birthdate,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, 
+      #{weight,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{health,jdbcType=VARCHAR}, 
+      #{marry,jdbcType=VARCHAR}, #{selfcheck,jdbcType=VARCHAR}, #{companycheck,jdbcType=VARCHAR}, 
+      #{udegree,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.talentpool.po.Userinfo" >
+    insert into Userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="idcardphotoz != null" >
+        idcardphotoz,
+      </if>
+      <if test="idcardphotof != null" >
+        idcardphotof,
+      </if>
+      <if test="jobphoto != null" >
+        jobphoto,
+      </if>
+      <if test="otherphoto1 != null" >
+        otherphoto1,
+      </if>
+      <if test="otherphoto2 != null" >
+        otherphoto2,
+      </if>
+      <if test="resume != null" >
+        resume,
+      </if>
+      <if test="speciality != null" >
+        speciality,
+      </if>
+      <if test="workplant != null" >
+        workplant,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="head != null" >
+        Head,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="gzd != null" >
+        gzd,
+      </if>
+      <if test="joindate != null" >
+        joindate,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="birthdate != null" >
+        birthdate,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="health != null" >
+        health,
+      </if>
+      <if test="marry != null" >
+        marry,
+      </if>
+      <if test="selfcheck != null" >
+        selfcheck,
+      </if>
+      <if test="companycheck != null" >
+        companycheck,
+      </if>
+      <if test="udegree != null" >
+        udegree,
+      </if>
+      <if test="degree != null" >
+        degree,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardphotoz != null" >
+        #{idcardphotoz,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardphotof != null" >
+        #{idcardphotof,jdbcType=VARCHAR},
+      </if>
+      <if test="jobphoto != null" >
+        #{jobphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="otherphoto1 != null" >
+        #{otherphoto1,jdbcType=VARCHAR},
+      </if>
+      <if test="otherphoto2 != null" >
+        #{otherphoto2,jdbcType=VARCHAR},
+      </if>
+      <if test="resume != null" >
+        #{resume,jdbcType=VARCHAR},
+      </if>
+      <if test="speciality != null" >
+        #{speciality,jdbcType=VARCHAR},
+      </if>
+      <if test="workplant != null" >
+        #{workplant,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="head != null" >
+        #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="gzd != null" >
+        #{gzd,jdbcType=VARCHAR},
+      </if>
+      <if test="joindate != null" >
+        #{joindate,jdbcType=DATE},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdate != null" >
+        #{birthdate,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="health != null" >
+        #{health,jdbcType=VARCHAR},
+      </if>
+      <if test="marry != null" >
+        #{marry,jdbcType=VARCHAR},
+      </if>
+      <if test="selfcheck != null" >
+        #{selfcheck,jdbcType=VARCHAR},
+      </if>
+      <if test="companycheck != null" >
+        #{companycheck,jdbcType=VARCHAR},
+      </if>
+      <if test="udegree != null" >
+        #{udegree,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.talentpool.po.UserinfoExample" resultType="java.lang.Integer" >
+    select count(*) from Userinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Userinfo
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contact != null" >
+        contact = #{record.contact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcardphotoz != null" >
+        idcardphotoz = #{record.idcardphotoz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcardphotof != null" >
+        idcardphotof = #{record.idcardphotof,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobphoto != null" >
+        jobphoto = #{record.jobphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherphoto1 != null" >
+        otherphoto1 = #{record.otherphoto1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherphoto2 != null" >
+        otherphoto2 = #{record.otherphoto2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resume != null" >
+        resume = #{record.resume,jdbcType=VARCHAR},
+      </if>
+      <if test="record.speciality != null" >
+        speciality = #{record.speciality,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workplant != null" >
+        workplant = #{record.workplant,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null" >
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.head != null" >
+        Head = #{record.head,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gzd != null" >
+        gzd = #{record.gzd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.joindate != null" >
+        joindate = #{record.joindate,jdbcType=DATE},
+      </if>
+      <if test="record.idcard != null" >
+        idcard = #{record.idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nation != null" >
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthdate != null" >
+        birthdate = #{record.birthdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.height != null" >
+        height = #{record.height,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weight != null" >
+        weight = #{record.weight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.health != null" >
+        health = #{record.health,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marry != null" >
+        marry = #{record.marry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selfcheck != null" >
+        selfcheck = #{record.selfcheck,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companycheck != null" >
+        companycheck = #{record.companycheck,jdbcType=VARCHAR},
+      </if>
+      <if test="record.udegree != null" >
+        udegree = #{record.udegree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degree != null" >
+        degree = #{record.degree,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Userinfo
+    set id = #{record.id,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      contact = #{record.contact,jdbcType=VARCHAR},
+      idcardphotoz = #{record.idcardphotoz,jdbcType=VARCHAR},
+      idcardphotof = #{record.idcardphotof,jdbcType=VARCHAR},
+      jobphoto = #{record.jobphoto,jdbcType=VARCHAR},
+      otherphoto1 = #{record.otherphoto1,jdbcType=VARCHAR},
+      otherphoto2 = #{record.otherphoto2,jdbcType=VARCHAR},
+      resume = #{record.resume,jdbcType=VARCHAR},
+      speciality = #{record.speciality,jdbcType=VARCHAR},
+      workplant = #{record.workplant,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      Head = #{record.head,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      gzd = #{record.gzd,jdbcType=VARCHAR},
+      joindate = #{record.joindate,jdbcType=DATE},
+      idcard = #{record.idcard,jdbcType=VARCHAR},
+      nation = #{record.nation,jdbcType=VARCHAR},
+      birthdate = #{record.birthdate,jdbcType=VARCHAR},
+      height = #{record.height,jdbcType=VARCHAR},
+      weight = #{record.weight,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      health = #{record.health,jdbcType=VARCHAR},
+      marry = #{record.marry,jdbcType=VARCHAR},
+      selfcheck = #{record.selfcheck,jdbcType=VARCHAR},
+      companycheck = #{record.companycheck,jdbcType=VARCHAR},
+      udegree = #{record.udegree,jdbcType=VARCHAR},
+      degree = #{record.degree,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.talentpool.po.Userinfo" >
+    update Userinfo
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardphotoz != null" >
+        idcardphotoz = #{idcardphotoz,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardphotof != null" >
+        idcardphotof = #{idcardphotof,jdbcType=VARCHAR},
+      </if>
+      <if test="jobphoto != null" >
+        jobphoto = #{jobphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="otherphoto1 != null" >
+        otherphoto1 = #{otherphoto1,jdbcType=VARCHAR},
+      </if>
+      <if test="otherphoto2 != null" >
+        otherphoto2 = #{otherphoto2,jdbcType=VARCHAR},
+      </if>
+      <if test="resume != null" >
+        resume = #{resume,jdbcType=VARCHAR},
+      </if>
+      <if test="speciality != null" >
+        speciality = #{speciality,jdbcType=VARCHAR},
+      </if>
+      <if test="workplant != null" >
+        workplant = #{workplant,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="head != null" >
+        Head = #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="gzd != null" >
+        gzd = #{gzd,jdbcType=VARCHAR},
+      </if>
+      <if test="joindate != null" >
+        joindate = #{joindate,jdbcType=DATE},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdate != null" >
+        birthdate = #{birthdate,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="health != null" >
+        health = #{health,jdbcType=VARCHAR},
+      </if>
+      <if test="marry != null" >
+        marry = #{marry,jdbcType=VARCHAR},
+      </if>
+      <if test="selfcheck != null" >
+        selfcheck = #{selfcheck,jdbcType=VARCHAR},
+      </if>
+      <if test="companycheck != null" >
+        companycheck = #{companycheck,jdbcType=VARCHAR},
+      </if>
+      <if test="udegree != null" >
+        udegree = #{udegree,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        degree = #{degree,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.talentpool.po.Userinfo" >
+    update Userinfo
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      idcardphotoz = #{idcardphotoz,jdbcType=VARCHAR},
+      idcardphotof = #{idcardphotof,jdbcType=VARCHAR},
+      jobphoto = #{jobphoto,jdbcType=VARCHAR},
+      otherphoto1 = #{otherphoto1,jdbcType=VARCHAR},
+      otherphoto2 = #{otherphoto2,jdbcType=VARCHAR},
+      resume = #{resume,jdbcType=VARCHAR},
+      speciality = #{speciality,jdbcType=VARCHAR},
+      workplant = #{workplant,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      Head = #{head,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      gzd = #{gzd,jdbcType=VARCHAR},
+      joindate = #{joindate,jdbcType=DATE},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      birthdate = #{birthdate,jdbcType=VARCHAR},
+      height = #{height,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      health = #{health,jdbcType=VARCHAR},
+      marry = #{marry,jdbcType=VARCHAR},
+      selfcheck = #{selfcheck,jdbcType=VARCHAR},
+      companycheck = #{companycheck,jdbcType=VARCHAR},
+      udegree = #{udegree,jdbcType=VARCHAR},
+      degree = #{degree,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="QueryByDaochu" resultType="map">
+  select id,name,workplant,gzd,status,joindate,birthdate,idcard from userinfo where 1=1
+  </select>
+</mapper>

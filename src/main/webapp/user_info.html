@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>修改信息</title>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="node_modules/distpicker/dist/distpicker.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/user_info.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!--注册表单-->
+        <div class="container  text-center  registers">
+            <table class="table table-bordered" id="test">
+                <tbody>
+                    <caption>
+                        <h2>信息登记表</h2>
+                    </caption>
+                    <div id="base">
+                        <tr>
+                            <th style="width:13%">姓名</th>
+                            <th style="width:13%"><input type="text" id="name"></th>
+                            <th style="width:13%">性别</th>
+                            <th style="width:13%">
+                                <input type="radio" value="man" name="sex" id="男" checked style="width:30%">男
+                                <input type="radio" value="women" name="sex" id="女" style="width:30%">女
+                            </th>
+                            <th style="width:13%">民族</th>
+                            <th style="width:13%"><input type="text" id="nation"></th>
+                            <th rowspan="4">
+                                <div>
+                                    <img width="110px" height="130px" src="./images/favicon.png" id="user_image" />
+                                    <input class="center-block display-no" id="user_icon" type="file" accept="image/*"
+                                        onchange="preImg(this.id,'user_image','progress1')" style="display: none" />
+                                    <div class="clearfix"></div>
+                                    <button type="button" class="btn btn-default btn-primary" id="choose_icon"
+                                        style="display:block;margin:auto">点击选择图片</button>
+                                </div>
+
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>出生日期</th>
+                            <th><input type="date" id="birthdate"></th>
+                            <th>身 高</th>
+                            <th><input type="number" id="height" placeholder="cm"></th>
+                            <th>体重</th>
+                            <th><input type="number" id="weight" placeholder="kg"></th>
+                        </tr>	
+                        <tr>
+                            <th>学历</th>
+                            <th>
+                            <select id="udegree" style="width: 100%;">
+                                <option value="初中">初中</option>
+                                <option value="高中">高中</option>
+                                <option value="中专">中专</option>
+                                <option value="大专">大专</option>
+                                <option value="本科">本科</option>
+                                <option value="其他">其他</option>
+                            </select>
+                            </th>
+                            <th colspan="2">联系方式</th>
+                            <th colspan="2"><input type="number" id="contact" placeholder="电话"></th>
+                        </tr>
+                        <tr>
+                            <th>身份证号</th>
+                            <th colspan="2"><input type="text" id="idcard"></th>
+                            <th>工种</th>
+                            <th colspan="2"><input type="text" id="workplant"></th>
+                            <!-- <th  colspan="2"><input type="number"></th> -->
+                        </tr>
+                        <tr>
+                            <th>现住址</th>
+                            <th colspan="2">
+                                <div data-toggle="distpicker" id="target">
+                                    <!-- container -->
+                                    <select style="width:30%"></select><!-- 省 -->
+                                    <select style="width:30%"></select><!-- 市 -->
+                                    <select style="width:30%"></select><!-- 区 -->
+                                </div>
+                            </th>
+                            <th>健康状况</th>
+                            <th><input type="text" id="health"></th>
+                            <th>婚姻状况</th>
+                            <th><input type="text" id="marry"></th>
+                        </tr>
+                    </div>
+                    <!-- 教育背景 -->
+                    <tr>
+                        <th style="height:100px;vertical-align:middle" rowspan="3" colspan="1">教育背景</th>
+                        <th style="vertical-align:middle" colspan="2">起 止 年 月</th>
+                        <th style="vertical-align:middle">学 校 名 称</th>
+                        <th style="vertical-align:middle">学历</th>
+                        <th style="vertical-align:middle">学历获取方式</th>
+                        <th style="vertical-align:middle">学校所在地</th>
+                    </tr>
+                    <tr data-pname="edu" name="edu">
+                        <th colspan="2"><input type="date" id="estartdate"> - <input type="date" id="eenddate"></th>
+                        <th><input type="text" id="schoolname"></th>
+               
+                        <th><input type="text" id="degree"></th>
+                        <th><input type="text" id="takedegree"></th>
+                        <th><input type="text" id="schoollocation"></th>
+
+                    </tr>
+                    <tr data-pname="edu" name="edu">
+                        <th colspan="2"><input type="date" id="estartdate"> - <input type="date" id="eenddate"></th>
+                        <th><input type="text" id="schoolname"></th>
+                        <th><input type="text" id="degree"></th>
+                        <th><input type="text" id="takedegree"></th>
+                        <th><input type="text" id="schoollocation"></th>
+                    </tr>
+
+
+                    <!-- 工作经历 -->
+
+                    <tr>
+                        <th style="height:140px;vertical-align:middle" rowspan="5" colspan="1">工作经历</th>
+                        <th style="vertical-align:middle" colspan="2">起 止 年 月</th>
+                        <th style="vertical-align:middle">工作单位</th>
+                        <th style="vertical-align:middle">岗位</th>
+                        <th style="vertical-align:middle">离职原因</th>
+                        <th style="vertical-align:middle">证明人电话</th>
+                    </tr>
+                    <tr data-pname="work" name="work">
+                        <th colspan="2"><input type="date" id="wstartdate"> - <input type="date" id="wenddate"></th>
+                        <th><input type="text" id="job"></th>
+                        <th><input type="text" id="post"></th>
+                        <th><input type="text" id="resignreason"></th>
+                        <th><input type="number" id="ztel"></th>
+                    </tr>
+                    <tr data-pname="work" name="work">
+                        <th colspan="2"><input type="date" id="wstartdate"> - <input type="date" id="wenddate"></th>
+                        <th><input type="text" id="job"></th>
+                        <th><input type="text" id="post"></th>
+                        <th><input type="text" id="resignreason"></th>
+                        <th><input type="number" id="ztel"></th>
+                    </tr>
+                    <tr data-pname="work" name="work">
+                        <th colspan="2"><input type="date" id="wstartdate"> - <input type="date" id="wenddate"></th>
+                        <th><input type="text" id="job"></th>
+                        <th><input type="text" id="post"></th>
+                        <th><input type="text" id="resignreason"></th>
+                        <th><input type="number" id="ztel"></th>
+                    </tr>
+                    <tr data-pname="work" name="work">
+                        <th colspan="2"><input type="date" id="wstartdate"> - <input type="date" id="wenddate"></th>
+                        <th><input type="text" id="job"></th>
+                        <th><input type="text" id="post"></th>
+                        <th><input type="text" id="resignreason"></th>
+                        <th><input type="number" id="ztel"></th>
+                    </tr>
+
+
+                    <!-- 培训经历 -->
+                    <tr>
+                        <th style="height:140px;vertical-align:middle" rowspan="5" colspan="2">培训经历</th>
+                        <th style="vertical-align:middle" colspan="2">培训时间</th>
+                        <th style="vertical-align:middle" colspan="2">培训机构</th>
+                        <th style="vertical-align:middle">培训内容</th>
+                    </tr>
+                    <tr data-pname="pex" name="pex">
+                        <th colspan="2"><input type="number" id="ptime" placeholder="月"></th>
+                        <th colspan="2"><input type="text" id="pplace"></th>
+                        <th><input type="text" id="pcontent"></th>
+                    </tr>
+                    <tr data-pname="pex" name="pex">
+                        <th colspan="2"><input type="number" id="ptime" placeholder="月"></th>
+                        <th colspan="2"><input type="text" id="pplace"></th>
+                        <th><input type="text" id="pcontent"></th>
+                    </tr>
+                    <tr data-pname="pex" name="pex">
+                        <th colspan="2"><input type="number" id="ptime" placeholder="月"></th>
+                        <th colspan="2"><input type="text" id="pplace"></th>
+                        <th><input type="text" id="pcontent"></th>
+                    </tr>
+                    <tr data-pname="pex" name="pex">
+                        <th colspan="2"><input type="number" id="ptime" placeholder="月"></th>
+                        <th colspan="2"><input type="text" id="pplace"></th>
+                        <th><input type="text" id="pcontent"></th>
+                    </tr>
+                    <!-- 证书资格 -->
+                    <tr>
+                        <th style="height:120px;vertical-align:middle" rowspan="5" colspan="2">资格证书</th>
+                        <th style="vertical-align:middle">颁发时间</th>
+                        <th style="vertical-align:middle" colspan="2">证书名称</th>
+                        <th style="vertical-align:middle" colspan="2">颁发机构</th>
+
+                    </tr>
+                    <tr data-pname="qua" name="qua">
+                        <th><input type="date" id="qtime"></th>
+                        <th colspan="2"><input type="text" id="qname"></th>
+                        <th colspan="2"><input type="text" id="qplace"></th>
+                    </tr>
+                    <tr data-pname="qua" name="qua">
+                        <th><input type="date" id="qtime"></th>
+                        <th colspan="2"><input type="text" id="qname"></th>
+                        <th colspan="2"><input type="text" id="qplace"></th>
+                    </tr>
+                    <tr data-pname="qua" name="qua">
+                        <th><input type="date" id="qtime"></th>
+                        <th colspan="2"><input type="text" id="qname"></th>
+                        <th colspan="2"><input type="text" id="qplace"></th>
+                    </tr>
+                    <tr data-pname="qua" name="qua">
+                        <th><input type="date" id="qtime"></th>
+                        <th colspan="2"><input type="text" id="qname"></th>
+                        <th colspan="2"><input type="text" id="qplace"></th>
+                    </tr>
+
+                    <!-- 家庭成员情况 -->
+                    <tr>
+                        <th style="height:120px;vertical-align:middle" rowspan="3" colspan="2">家庭成员情况</th>
+                        <th>关系</th>
+                        <th>姓名</th>
+                        <th colspan="2">工作单位</th>
+                        <th colspan="1">联系方式</th>
+                    </tr>
+                    <tr data-pname="mem" name="mem">
+                        <th><input type="text" id="mlink"></th>
+                        <th><input type="text" id="mname"></th>
+                        <th colspan="2"><input type="text" id="mworkplace"></th>
+                        <th><input type="number" placeholder="电话" id="mtel"></th>
+                    </tr>
+                    <tr data-pname="mem" name="mem">
+                        <th><input type="text" id="mlink"></th>
+                        <th><input type="text" id="mname"></th>
+                        <th colspan="2"><input type="text" id="mworkplace"></th>
+                        <th><input type="number" placeholder="电话" id="mtel"></th>
+                    </tr>
+
+                    <!-- 自我评价 -->
+                    <tr>
+                        <th rowspan="2" colspan="2" style="vertical-align:middle">自我评价</th>
+                        <th colspan="5">个人优点、缺点、专长、工作业绩、爱好、职业规划等</th>
+                    </tr>
+                    <tr>
+                        <th colspan="5"><input type="text" id="selfcheck"></th>
+                    </tr>
+                    <!-- 公司评价 -->
+                    <tr>
+                        <th rowspan="2" colspan="2" style="vertical-align:middle">公司评价</th>
+                        <th colspan="5">工作能力、工作态度、工作成绩、成长潜力、品行等。</th>
+                    </tr>
+                    <tr>
+                        <th colspan="5"><input type="text" id="companycheck"></th>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="text-align: center">
+                <Button type="button" id="next" class="next-button inputs">修改信息
+            </div>
+        </div>
+
+        <!-- 图片上传 -->
+        <div class="row info-border">
+            <div class="col-md-6 text-center margin-top">
+                <h4>身份证正面</h4>
+                <div class="user-image-div image-out-border">
+
+                    <div class="image-in-border">
+                        <div class="center-vertical">
+                            <img src="" id="image_id_z" alt="" width="290" height="200">
+                            <input class="center-block display-no" id="idcard_z" type="file" accept="image/*"
+                                onchange="preImg(this.id,'image_id_z','progress1')" style="display: none" />
+                            <div class="clearfix"></div>
+                            <button type="button" class="btn btn-default btn-primary"
+                                id="choose_idcard_z">点击选择图片</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- 进度条 -->
+                <div class="progress" id="progress1" style="visibility: hidden">
+                    <div id="progress1_bar" class="progress-bar progress-bar-warning" role="progressbar"
+                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 text-center margin-top">
+                <h4>身份证反面</h4>
+                <div class="user-image-div image-out-border">
+
+                    <div class="image-in-border">
+                        <div class="center-vertical">
+                            <img src="" id="image_id_f" alt="" width="290" height="200">
+                            <input class="center-block display-no" id="idcard_f" type="file" accept="image/*"
+                                onchange="preImg(this.id,'image_id_f','progress2')" style="display: none" />
+                            <div class="clearfix"></div>
+                            <button type="button" class="btn btn-default btn-primary"
+                                id="choose_idcard_f">点击选择图片</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- 进度条 -->
+                <div class="progress" id="progress2" style="visibility: hidden">
+                    <div id="progress2_bar" class="progress-bar progress-bar-warning" role="progressbar"
+                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 text-center margin-top">
+                <h4>职业资格证</h4>
+                <div class="user-image-div image-out-border">
+
+                    <div class="image-in-border">
+                        <div class="center-vertical">
+                            <img src="" id="image_career" alt="" width="290" height="200">
+                            <input class="center-block display-no" id="career" type="file" accept="image/*"
+                                onchange="preImg(this.id,'image_career','progress3')" style="display: none" />
+                            <div class="clearfix"></div>
+                            <button type="button" class="btn btn-default btn-primary" id="choose_career">点击选择图片</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 进度条 -->
+                <div class="progress" id="progress3" style="visibility: hidden">
+                    <div id="progress3_bar" class="progress-bar progress-bar-warning" role="progressbar"
+                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 text-center margin-top">
+                <h4>其他证书</h4>
+                <div class="user-image-div image-out-border">
+
+                    <div class="image-in-border">
+                        <div class="center-vertical">
+                            <img src="" id="image_other1" alt="" width="290" height="200">
+                            <input class="center-block display-no" id="otherphoto1" type="file" accept="image/*"
+                                onchange="preImg(this.id,'image_other1','progress4')" style="display: none" />
+                            <div class="clearfix"></div>
+                            <button type="button" class="btn btn-default btn-primary" id="choose_other1">点击选择图片</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 进度条 -->
+                <div class="progress" id="progress4" style="visibility: hidden">
+                    <div id="progress3_bar" class="progress-bar progress-bar-warning" role="progressbar"
+                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 text-center margin-top">
+                <h4>其他证书</h4>
+                <div class="user-image-div image-out-border">
+
+                    <div class="image-in-border">
+                        <div class="center-vertical">
+                            <img src="" id="image_other2" alt="" width="290" height="200">
+                            <input class="center-block display-no" id="otherphoto2" type="file" accept="image/*"
+                                onchange="preImg(this.id,'image_other2','progress5')" style="display: none" />
+                            <div class="clearfix"></div>
+                            <button type="button" class="btn btn-default btn-primary" id="choose_other2">点击选择图片</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 进度条 -->
+                <div class="progress" id="progress5" style="visibility: hidden">
+                    <div id="progress3_bar" class="progress-bar progress-bar-warning" role="progressbar"
+                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 text-center margin-top" style="display: none;">
+                <h4>工作简历</h4>
+                <div class="user-image-div image-out-border">
+                    <div class="image-in-border">
+                        <div class="center-vertical">
+                            <textarea id="resume" class=" center-block form-control " rows="10" style="width: 310px"
+                                disabled>
+                        </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+<script>
+    var userID;
+    var value;
+    //接收页面传值
+    $(document).ready(function () {
+        var that = this
+        //var url = '/TalentPools/userupdate';
+        var url = window.location.search;
+        // 接收id
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            var id = str.split("=")[1];
+            userID = id;
+            value = id;
+            //	console.log(userID);
+            //测试用id
+            //userID = 17853558912;
+            //得到id进行ajax获取数据
+            $.ajax({
+                type: "GET",
+                url: "/TalentPools/userquery/" + userID,
+                dataType: "json",
+                data: {
+                    "username": userID,
+                },
+                success: function (res) {
+                    console.log(res);
+
+                    //获取基本信息
+                    let base = new Map(objToMap(res.userinfo));
+                    let trlist = document.getElementsByTagName("tr");
+                    for (let i = 0; i < trlist.length; i++) {
+                        //获取前五行和后两行
+                        if (i < 5 || i > trlist.length - 4) {
+                            let thlist = trlist[i].querySelectorAll("input");
+                            for (let j = 0; j < thlist.length; j++) {
+                                if (thlist[j].id && thlist[j].id != "user_icon") {
+                                    // thlist[j].innerHTML = base.get(thlist[j].id);
+                                    thlist[j].value = base.get(thlist[j].id);
+                                }
+                            }
+                        }
+                    }
+                    //设置性别
+                    if (res.userinfo.sex) {
+                        document.getElementById(res.userinfo.sex).setAttribute("checked", "checked");
+                    }
+                    //设置学历
+                    if(res.userinfo.udegree){
+                    	$('#udegree').val(res.userinfo.udegree) 
+                    }
+                    //设置现住址
+                    let gzd = res.userinfo.gzd.split("-");
+                    $("#target").distpicker('destroy');
+                    $("#target").distpicker({
+                        province: gzd[0],
+                        city: gzd[1],
+                        district: gzd[2],
+                        placeholder: false
+                    });
+                    //设置教育背景
+                    let edu = document.getElementsByName("edu")
+                    for (let i = 0; i < res.edu.length; i++) {   //1
+                        //设置tr的id
+                        edu[i].id = res.edu[i].id;
+                        let teach = new Map(objToMap(res.edu[i]));
+                        let input = edu[i].querySelectorAll("input");
+                        for (let t of input) {
+                            if (t.id) {
+                                if (t.id == 'estartdate') {
+                                    t.value = teach.get(t.id).split(';')[0];
+                                } else {
+                                    t.value = teach.get(t.id);
+                                }
+                            }
+                        }
+                    }
+                    //工作经历
+                    let work = document.getElementsByName("work");
+                    for (let i = 0; i < res.work.length; i++) {
+                        //设置tr的id
+                        work[i].id = res.work[i].id;
+                        let teach = new Map(objToMap(res.work[i]));
+                        let input = work[i].querySelectorAll("input");
+                        for (let t of input) {
+                            if (t.id == 'wstartdate') {
+                                t.value = teach.get(t.id).split(';')[0];
+                            } else {
+                                t.value = teach.get(t.id);
+                            }
+                        }
+                    }
+                    //培训经历
+                    let pex = document.getElementsByName("pex");
+                    for (let i = 0; i < res.pex.length; i++) {
+                        //设置tr的id
+                        pex[i].id = res.pex[i].id;
+                        let teach = new Map(objToMap(res.pex[i]));
+                        let input = pex[i].querySelectorAll("input");
+                        for (let t of input) {
+                            t.value = teach.get(t.id);
+                        }
+                    }
+                    //资格证书
+                    let qua = document.getElementsByName("qua");
+                    for (let i = 0; i < res.qua.length; i++) {
+                        //设置tr的id
+                        qua[i].id = res.qua[i].id;
+                        let teach = new Map(objToMap(res.qua[i]));
+                        let input = qua[i].querySelectorAll("input");
+                        for (let t of input) {
+                            t.value = teach.get(t.id);
+                        }
+                    }
+                    //家庭成员情况
+                    let mem = document.getElementsByName("mem");
+                    for (let i = 0; i < res.mem.length; i++) {
+                        //设置tr的id
+                        mem[i].id = res.mem[i].id;
+                        let teach = new Map(objToMap(res.mem[i]));
+                        let input = mem[i].querySelectorAll("input");
+                        for (let t of input) {
+                            t.value = teach.get(t.id);
+                        }
+                    }
+                    //工作简历
+                    $("#resume").val(res.userinfo.resume);
+                    // 改变图片内容 
+                    $("#user_image").attr("src", 'pic/' + res.userinfo.head);
+                    $("#image_id_z").attr("src", 'pic/' + res.userinfo.idcardphotoz);
+                    $("#image_id_f").attr("src", 'pic/' + res.userinfo.idcardphotof);
+                    // $("#image_work").attr("src", 'pic/' + res.userinfo.resume);
+                    $("#image_career").attr("src", 'pic/' + res.userinfo.jobphoto);
+                    $("#image_other1").attr("src", 'pic/' + res.userinfo.otherphoto1);
+                    $("#image_other2").attr("src", 'pic/' + res.userinfo.otherphoto2);
+
+                    window.parent.$("#user_id").text(res.name);
+                    window.parent.$("#head").attr("src", 'pic/' + res.head);
+                },
+                error: function (jqXHR) {
+                    alert("连接失败")
+                    console.log("Error: " + jqXHR.status);
+                }
+            });
+        }
+
+        //设置点击修改上传事件
+        document.getElementById("next").addEventListener("click", function () {
+            let data = new Map();
+            let trlist = document.getElementsByTagName("tr");
+            let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+            // 验证身份证
+            if (reg.test(document.getElementById("idcard").value) === false) {
+                alert("身份证输入不合法");
+                return false;
+            }
+            //验证表单不为空
+            for (let i = 0; i < trlist.length; i++) {
+                //获取前五行
+                if (i < 5) {
+                    let thlist = trlist[i].querySelectorAll("input");
+                    for (let j = 0; j < thlist.length; j++) {
+                        //排除头像输入框
+                        if (thlist[j].id != 'user_icon') {
+                            if (thlist[j].value == "" || thlist[j].value == null) {
+                                alert("信息不能为空!");
+                                thlist[j].focus();
+                                return (false);
+                            }
+                        }
+
+                    }
+                }
+            }
+            //接收基础数据，给map赋值
+            for (let i = 0; i < trlist.length; i++) {
+                //获取前五行和后两行
+                if (i < 5 || i > trlist.length - 4) {
+                    let inputlist = trlist[i].querySelectorAll("input");
+                    for (let j = 0; j < inputlist.length; j++) {
+                        if (inputlist[j].id && inputlist[j].id != 'age' && inputlist[j].id != 'user_icon' && inputlist[j].name != 'sex') {
+                            data.set(inputlist[j].id, inputlist[j].value);
+                        }
+                    }
+                }
+            }
+            //设置帐号
+            data.set("username", userID);
+            //设置性别
+            var obj = document.getElementsByName("sex");
+            for (var i = 0; i < obj.length; i++) {
+                if (obj[i].checked) {
+                    data.set("sex", obj[i].id);
+                }
+            }
+            //设置学历
+            let udegree = document.getElementById('udegree').value
+            data.set('udegree',udegree)
+            //设置所在地
+            let placelist = document.querySelector("#target").querySelectorAll("select");
+            let gzd = placelist[0].value;
+            for (let i = 1; i < placelist.length; i++) {
+                gzd = gzd + "-" + placelist[i].value
+            }
+            data.set("gzd", gzd);
+            //获取可选内容
+            let alldata = new Map();
+            const all = ['edu', 'work', 'pex', 'qua', 'mem'];
+            for (let i = 0; i < all.length; i++) {
+                //获取同名tr
+                let choosable = document.getElementsByName(all[i]);
+                let map = new Map();
+                for (let i = 0; i < choosable.length; i++) {
+                    //如果存在data-pname
+                    if (choosable[i].dataset.pname) {
+                        if (!map.get('ids')) {
+                            map.set("ids", choosable[i].id);
+                        } else {
+                            map.set("ids", map.get('ids') + ";" + choosable[i].id);
+                        }
+                        let input = choosable[i].querySelectorAll("input");
+                        for (let j = 0; j < input.length; j++) {
+                            // map = addMap(map,th[j]);
+                            if (!map.has(input[j].id)) {
+                                map.set(input[j].id, input[j].value);
+                            } else {
+                                let temp = map.get(input[j].id);
+                                temp = temp + ';' + input[j].value;
+                                map.set(input[j].id, temp);
+                            }
+                        }
+                    }
+                }
+                alldata.set(all[i], map);
+            }
+
+            //拼接生成json
+            let temp = "";
+            alldata.forEach((item, key) => {
+                if (typeof (item) == "object") {
+                    temp += ',"' + key + '":' + strMapToJson(item);
+                }
+            })
+            let temp1 = strMapToJson(data).slice(0, -1);
+            temp1 = '{"userinfo":' + temp1;
+            let real = temp1 + '}' + temp + '}';
+            console.log(JSON.stringify(JSON.parse(real)));
+            //ajax上传
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                url: "/TalentPools/userupdate",
+                data: JSON.stringify(JSON.parse(real)),
+                success: function (res) {
+                    if (res.result == "1") {
+                        alert("成功");
+                        window.location.reload();
+                    } else {
+                        alert("失败");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //如果状态码是500
+                    if (XMLHttpRequest.status == 500) {
+                        alert("添加或删除一整行内的信息");
+                    }
+                }
+            })
+        })
+    });
+    //改变input的样式
+    $("#choose_icon").click(function () {
+        $("#user_icon").click();
+    });
+
+    $("#choose_idcard_z").click(function () {
+        $("#idcard_z").click();
+    });
+
+    $("#choose_idcard_f").click(function () {
+        $("#idcard_f").click();
+    });
+
+    $("#choose_work").click(function () {
+        $("#works").click();
+    });
+
+    $("#choose_career").click(function () {
+        $("#career").click();
+    });
+
+    $("#choose_other1").click(function () {
+        $("#otherphoto1").click();
+    });
+
+    $("#choose_other2").click(function () {
+        $("#otherphoto2").click();
+    });
+
+    //上传图片
+    function preImg(sourceId, targetId, progressId) {
+        var url = getFileUrl(sourceId);
+        var imgPre = document.getElementById(targetId);
+        imgPre.src = url;
+        //添加上传方法
+        postImage(sourceId, progressId);
+    }
+    //上传图片方法
+    function postImage(id, progressId) {
+        $('#' + progressId).css('visibility', 'visible');
+        var formdata = new FormData();
+        //上传的图片资源
+        formdata.append('photo', $("#" + id).get(0).files[0]);
+        // 上传的其他条件
+        formdata.append('image_name', id);
+        formdata.append('usernames', this.value);
+        $.ajax({
+            url: "/TalentPools/userupdatePhoto",
+            type: "POST",
+            data: formdata,
+            async: true,           //是否异步，默认为真
+            contentType: false,
+            processData: false,
+            // 上传进度监听
+            xhr: function () {
+                myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) {
+                    myXhr.upload.addEventListener('progress', function (e) {
+                        if (e.lengthComputable) {
+                            var percent = Math.floor(e.loaded / e.total * 100);
+                            if (percent <= 100) {
+                                $('#' + progressId).css('visibility', 'visible');
+                                $("#" + progressId + '_bar').css("width", percent + "%");
+                                // $("#J_progress_label").html('已上传：'+percent+'%');
+                            }
+                            if (percent >= 100) {
+                            }
+                        }
+                    }, false);
+                }
+                return myXhr;
+            },
+            success: function (res) {
+                if (res.result == "1") {
+                    $("#" + progressId + '_bar').css("width", "9%");
+                    $('#' + progressId).css('visibility', 'hidden');
+                    alert("修改成功")
+                } else {
+                    alert("修改失败")
+                }
+            },
+            fail: function (res) {
+                alert("fail")
+            }
+        })
+    }
+    function getFileUrl(sourceId) {
+        var url;
+        if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
+            url = document.getElementById(sourceId).value;
+        } else if (navigator.userAgent.indexOf("Firefox") > 0) { // Firefox
+            url = window.URL.createObjectURL(document.getElementById(sourceId).files[0]);
+        } else if (navigator.userAgent.indexOf("Chrome") > 0) { // Chrome
+            url = window.URL.createObjectURL(document.getElementById(sourceId).files[0]);
+        }
+        return url;
+    }
+    // 对象转化为map
+    function objToMap(obj) {
+        let map = new Map();
+        for (let k of Object.keys(obj)) {
+            map.set(k, obj[k]);
+        }
+        return map;
+    }
+    //map转对象
+    function strMapToObj(strMap) {
+        let obj = Object.create(null);
+        for (let [k, v] of strMap) {
+            obj[k] = v;
+        }
+        return obj;
+    }
+    //map转json
+    function strMapToJson(strMap) {
+        strMap.forEach(item => {
+            if (typeof (item) == "object") {
+                return strMapToJson(item);
+            } else {
+                return item;
+            }
+        })
+        return JSON.stringify(strMapToObj(strMap));
+    }
+    function mapToArrayJson(map) {
+        return JSON.stringify([...map]);
+    }
+
+    //将formdata转化为json
+    var convert_FormData_to_json2 = function (formData) {
+        var objData = {};
+        formData.forEach((value, key) => objData[key] = value);
+        return JSON.parse(JSON.stringify(objData));
+    };
+    //取消默认省市县
+    $('#target').distpicker({
+        placeholder: false
+    });
+</script>
+
+</html>

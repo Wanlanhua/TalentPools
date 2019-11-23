@@ -1,0 +1,419 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="libs/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<!-- 自定义css样式 -->
+<link rel="stylesheet" href="css/admin-list.css">
+
+<title>用户管理</title>
+</head>
+<body>
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <a  class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);"
+		 title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<!-- 管理列表 -->
+	<div class="page-container">	
+		<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="opertor_add('添加用户','admin-add.html','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加操作员</a></span><button type="button" class="btn btn-success radius" onclick="exportUser()" >导出</button> <span class="r">共有数据：<strong id="dataNumber"></strong> 条</span> </div>
+		<div class="mt-20">
+			<table id="table1" class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
+				<thead>
+					<!-- <tr>
+						<th width="100px">操作员列表</th>
+					</tr> -->
+					<tr class="text-c">
+						<th width="25"><input type="checkbox" id="allcheck" name="" value=""></th>
+						<th width="40">ID</th>
+						<th width="150">用户名</th>
+						<th width="90">姓名</th>
+						<th width="150">密码</th>
+						<!-- <th width="100">部门</th> -->
+						<th width="150">联系方式</th>
+						<th width="150">管理区域</th>
+						<th width="100">状态</th>
+						<th width="100">操作</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="libs/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="libs/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="libs/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="libs/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="libs/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+function init (){
+	$('#table1').dataTable({
+		"bLengthChange":false,
+		"iDisplayLength": 10,
+		// "aaSorting": [[ 1, "desc" ]],//默认第几个排序
+		// "bStateSave": true,//状态保存
+		// "aoColumnDefs": [
+		//   //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+		//   {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
+		// ]
+	});
+}
+
+window.onload = getOpertor();
+
+function getOpertor(){
+	//获取操作员数据
+	$.get("/TalentPools/op",
+	function(data,status){
+		var str = "";
+		if(status == "success"){
+			console.log(data)
+			if(data.result==1){
+				var opertors = data.opertors;
+				console.log(data.opertors)
+				//循环遍历数据
+				$.each(data.opertors, function(index, obj, t) {
+					var id = index+1; 
+					str = str + "<tr class='text-c'><td><input type='checkbox' value='"+obj.username+"' name='checkbox'></td>"
+					+"<td>"+id+"</td>"	//id
+					+"<td>"+obj.username+"</td>"	//用户名
+					+"<td>"+obj.name+"</td>"	//姓名
+					+"<td>"+obj.password+"</td>"	//密码
+					// +"<td>"+obj.department+"</td>"  //部门
+					+"<td>"+obj.contact+"</td>"	//联系方式
+					+"<td>"+obj.area+"</td>";	//管理区域
+
+					//if(obj.status=="已停用"){
+					//	str = str + "<td class='td-status'><span class='label radius'>"+obj.status+"</span></td>"
+					//	+ "<td class='td-manage'><a style='text-decoration:none' onClick='admin_start(this,"+obj.id+")' href='javascript:;' title='启用'><i class='Hui-iconfont'>&#xe615;</i></a> <a title='编辑' href='javascript:;' onclick='opertor_edit('操作员编辑','admin-add.html','10001')' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='admin_del("+obj.username+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td>";
+					//}else{
+					//	str = str + "<td class='td-status'><span class='label label-success radius'>"+obj.status+"</span></td>"
+					//	+ "<td class='td-manage'><a style='text-decoration:none'  onClick='admin_stop(this,"+obj.id+")' href='javascript:;' title='停用'><i class='Hui-iconfont'>&#xe631;</i></a> <a title='编辑' href='javascript:;' onclick='opertor_edit('操作员编辑','admin-add.html','10001')' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='admin_del("+obj.username+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
+					//}
+					if(obj.status=="已停用"){
+						str = str + "<td class='td-status'><span class='label radius'>"+obj.status+"</span></td>"
+						+ "<td class='td-manage'><a style='text-decoration:none'  onClick='admin_start(this,"+obj.id+")' href='javascript:;' title='启用'><i class='Hui-iconfont'>&#xe6e1;</i></a> <a title='编辑' href='javascript:;' onclick='member_edit(\" "+'操作员编辑'+" \",\" "+'admin-edit.html'+'?username='+obj.username+'&id='+obj.id+'&name='+obj.name+'&password='+obj.password+'&contact='+obj.contact+'&area='+obj.area+" \","+700+","+400+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='admin_del("+obj.username+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td>";
+					}else{
+						str = str + "<td class='td-status'><span class='label label-success radius'>"+obj.status+"</span></td>"
+						+ "<td class='td-manage'><a style='text-decoration:none'  onClick='admin_stop(this,"+obj.id+")' href='javascript:;' title='停用'><i class='Hui-iconfont'>&#xe631;</i></a> <a title='编辑' href='javascript:;' onclick='member_edit(\" "+'操作员编辑'+" \",\" "+'admin-edit.html'+'?username='+obj.username+'&id='+obj.id+'&name='+obj.name+'&password='+obj.password+'&contact='+obj.contact+'&area='+obj.area+" \","+700+","+400+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='admin_del("+obj.username+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td>";
+					}
+				});
+				$('tbody').empty();
+				$('tbody').append(str);
+				$('#dataNumber').text(data.opertors.length)
+				$('#table1').dataTable().fnDestroy();
+				init();
+			}else{
+				layer.msg('没有操作员');
+				$('#dataNumber').text("0")
+				$('#table1').dataTable().fnDestroy();
+				init();
+			}
+		}else{
+			alert("获取失败！");
+		}
+	});
+}
+
+// 导出
+function exportUser(){
+	window.open('/TalentPools/Daochu2')
+}
+
+//刷新列表
+function getOpertorFresh(){
+	
+	//获取操作员数据
+	$.get("/TalentPools/op",
+	function(data,status){
+		var str = "";
+		if(status == "success"){
+			
+			$('#table1').dataTable().fnClearTable(); //清空一下table
+			$('#table1').dataTable().fnDestroy(); //还原初始化了的datatable
+			console.log(data)
+			if(data.result==1){
+				var opertors = data.opertors;
+				console.log(data.opertors)
+				
+				//循环遍历数据
+				$.each(data.opertors, function(index, obj, t) {
+					var id = index+1; 
+					str = str + "<tr class='text-c'><td><input type='checkbox' value='"+obj.username+"' name='checkbox'></td>"
+					+"<td>"+id+"</td>"	//id
+					+"<td>"+obj.username+"</td>"	//用户名
+					+"<td>"+obj.name+"</td>"	//姓名
+					+"<td>"+obj.password+"</td>"	//密码
+					// +"<td>"+obj.department+"</td>"  //部门
+					+"<td>"+obj.contact+"</td>"	//联系方式
+					+"<td>"+obj.area+"</td>";	//管理区域
+
+					//if(obj.status=="已停用"){
+					//	str = str + "<td class='td-status'><span class='label radius'>"+obj.status+"</span></td>"
+					//	+ "<td class='td-manage'><a style='text-decoration:none' onClick='admin_start(this,"+obj.id+")' href='javascript:;' title='启用'><i class='Hui-iconfont'>&#xe615;</i></a> <a title='编辑' href='javascript:;' onclick='opertor_edit('编辑','member-add.html','4','','510'))' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='admin_del("+obj.username+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td>";
+					//}else{
+					//	str = str + "<td class='td-status'><span class='label label-success radius'>"+obj.status+"</span></td>"
+					//	+ "<td class='td-manage'><a style='text-decoration:none'  onClick='admin_stop(this,"+obj.id+")' href='javascript:;' title='停用'><i class='Hui-iconfont'>&#xe631;</i></a> <a title='编辑' href='javascript:;' onclick='opertor_edit('编辑','member-add.html','4','','510'))' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='admin_del("+obj.username+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td>";
+					//}
+					if(obj.status=="已停用"){ 
+						str = str + "<td class='td-status'><span class='label radius'>"+obj.status+"</span></td>"
+						+ "<td class='td-manage'><a style='text-decoration:none'  onClick='admin_start(this,"+obj.id+")' href='javascript:;' title='启用'><i class='Hui-iconfont'>&#xe6e1;</i></a> <a title='编辑' href='javascript:;' onclick='member_edit(\" "+'操作员编辑'+" \",\" "+'admin-edit.html'+'?username='+obj.username+'&id='+obj.id+'&name='+obj.name+'&password='+obj.password+'&contact='+obj.contact+'&area='+obj.area+" \","+700+","+400+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='admin_del("+obj.username+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td>";
+					}else{
+						str = str + "<td class='td-status'><span class='label label-success radius'>"+obj.status+"</span></td>"
+						+ "<td class='td-manage'><a style='text-decoration:none'  onClick='admin_stop(this,"+obj.id+")' href='javascript:;' title='停用'><i class='Hui-iconfont'>&#xe631;</i></a> <a title='编辑' href='javascript:;' onclick='member_edit(\" "+'操作员编辑'+" \",\" "+'admin-edit.html'+'?username='+obj.username+'&id='+obj.id+'&name='+obj.name+'&password='+obj.password+'&contact='+obj.contact+'&area='+obj.area+" \","+700+","+400+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='admin_del("+obj.username+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td>";
+					}
+				});
+				$('tbody').empty();
+				$('tbody').append(str);
+				init(); 				//重新渲染 datatable
+				$('#dataNumber').text(data.opertors.length)
+			}else{
+				
+				layer.msg('没有操作员');
+				init(); 				//重新渲染 datatable
+				$('#dataNumber').text("0")
+			}
+		}else{
+			alert("获取失败！");
+		}
+	});
+}
+			
+
+/*操作员-添加*/
+function opertor_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+
+/* 批量删除 */
+function datadel(){
+	var arrayDelete = [];
+	var tbody = document.getElementById("tbody");
+	var arrCheckbox = tbody.getElementsByTagName("input");
+	console.log(arrCheckbox)
+	//全选
+	if(arrCheckbox.length>=1){
+		if(document.getElementById("allcheck").checked){
+			// console.log(arrCheckbox);
+			if(arrCheckbox.length<10){
+				for(var i = 0;i<arrCheckbox.length;i++){
+					arrayDelete[i] = arrCheckbox[i].getAttribute("value");
+				}
+			}else{
+				for(var i = 0;i<10;i++){
+					arrayDelete[i] = arrCheckbox[i].getAttribute("value");
+				}
+			}
+			layer.confirm('确认要全部删除吗？',function(index){
+				$.ajax({
+					type: 'POST',
+					url: '/TalentPools/opdelete',
+					dataType: 'json',
+					data:{
+						id:arrayDelete.join()  //操作员id
+					},
+					success: function(data){
+						if(data.result=="1"){
+							console.log("删除成功！")
+							getOpertorFresh();
+							window.parent.location.reload();//刷新父页面
+							layer.closeAll('dialog');//关闭信息框
+							layer.msg('已删除!',{icon: 6,time:1000});
+						}else{
+							console.log("删除失败！")
+							getOpertorFresh();
+							layer.closeAll('dialog');//关闭信息框
+							layer.msg('删除失败!',{icon: 5,time:1000});
+						}
+					},
+					error:function(data) {
+						alert("联网失败！")
+						layer.closeAll('dialog');//关闭信息框
+					},
+				});		
+			});	
+		}else{
+			console.log("信息")
+			//部分删除
+			var flage = true;
+			var j = 0;
+			for(var i = 0;i<arrCheckbox.length;i++){
+				if(arrCheckbox[i].checked){
+					arrayDelete[j] = arrCheckbox[i].getAttribute("value");
+					j++;
+					flage = false;
+				}
+			}
+			if(!flage){
+				layer.confirm('确认要部分删除信息吗？',function(index){
+					$.ajax({
+						type: 'POST',
+						url: '/TalentPools/opdelete',
+						dataType: 'json',
+						data:{
+							id:arrayDelete.join()  //操作员id
+						},
+						success: function(data){
+							if(data.result=="1"){
+								console.log("删除成功！")
+								getOpertorFresh();
+								layer.closeAll('dialog');//关闭信息框
+								layer.msg('已删除!',{icon: 6,time:1000});
+							}else{
+								console.log("删除失败！")
+								getOpertorFresh();
+								layer.closeAll('dialog');//关闭信息框
+								layer.msg('删除失败!',{icon: 5,time:1000});
+							}
+						},
+						error:function(data) {
+							alert("联网失败！")
+							layer.closeAll('dialog');//关闭信息框
+						},
+					});		
+				});	
+			}else{
+				layer.msg("请选择要删除的信息！")
+			}
+		}	
+	}else{
+		layer.msg("没有数据可以删除！")
+	}
+}
+
+/* 管理员-停用 */
+function admin_stop(obj,id){
+	layer.confirm('确认要停用吗？',function(index){
+	
+		//此处请求后台程序，下方是成功后的前台处理
+		$.ajax({
+			type: 'post',
+			url: '/TalentPools/status',
+			dataType: 'json',
+			data:{
+				id:id,  //操作员id
+				status: 2 //停用
+			},
+			success: function(data){
+				console.log(data)
+				if(data=="1"){
+					getOpertorFresh();
+					// $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,id)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
+					// $(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已停用</span>');
+					// $(obj).remove();
+					layer.closeAll('dialog');//关闭信息框
+					layer.msg('已停用!',{icon: 4,time:1000});
+				}else{
+					getOpertorFresh();
+					layer.closeAll('dialog');//关闭信息框
+					layer.msg('停用失败!',{icon: 5,time:1000});
+					
+				}
+			},
+			error:function(data) {
+				alert("请检查网络状况！")
+				layer.closeAll('dialog');//关闭信息框
+			},
+		});		
+	});
+}
+
+
+/*管理员-编辑*/
+function opertor_edit(title,url,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+function member_edit(title,url,id,w,h){
+	console.log(url)
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*管理员-启用*/
+function admin_start(obj,id){
+	layer.confirm('确认要启用吗？',function(index){
+		
+		//此处请求后台程序，下方是成功后的前台处理
+		$.ajax({
+			type: 'post',
+			url: '/TalentPools/status',
+			dataType: 'json',
+			data:{
+				id:id,  //操作员id
+				status: 1 //启用
+			},
+			success: function(data){
+				console.log(data)
+				if(data=="1"){
+					getOpertorFresh();
+					// $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_stop(this,id)" href="javascript:;" title="停用" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a>');
+					// $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
+					// $(obj).remove();
+					layer.closeAll('dialog');//关闭信息框
+					layer.msg('已启用!', {icon: 6,time:1000});
+				}else{
+					getOpertorFresh();
+					layer.closeAll('dialog');//关闭信息框
+					layer.msg('停用失败!', {icon: 6,time:1000});
+				}
+			},
+			error:function(data) {
+				alert("请检查网络状况！")
+				layer.closeAll('dialog');//关闭信息框
+			},
+		});		
+	});
+}
+
+/*管理员-单个删除*/
+function admin_del(id){
+	console.log(id)
+	layer.confirm('确认要删除吗？',function(index){
+		var idArray = [id];
+		$.ajax({
+			type: 'POST',
+			url: '/TalentPools/opdelete',
+			dataType: 'json',
+			data:{
+				id:idArray.join()  //操作员id
+			},
+			success: function(data){
+				console.log("删除成功！")
+				//window.parent.location.reload();//刷新父页面
+				getOpertorFresh();
+				layer.closeAll('dialog');//关闭信息框
+				
+				layer.msg('已删除!',{icon: 6,time:1000});
+			},
+			error:function(data) {
+				layer.msg("联网失败！")
+				layer.closeAll('dialog');//关闭信息框
+			},
+		});		
+	});
+}
+</script> 
+</body>
+</html>

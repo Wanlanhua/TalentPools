@@ -1,0 +1,25 @@
+/* 超级管理员 */
+
+.query-form{
+    width: 100%;
+    font-size: 15px;
+    margin-left: 300px;
+    /* border: 1px solid #000; */
+}
+
+.form-inline input{
+    width: 10%;
+    height: 24px;
+    margin-right: 10px;
+    border: 1px #ccc solid;
+}
+
+.query-form button{
+    height: 28px;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+.btn-detail{
+    border-radius: 10px;
+}

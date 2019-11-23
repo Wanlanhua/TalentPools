@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/common.css">
+    <meta charset="UTF-8">
+    <title>注册</title>
+
+
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <!--公司logo-->
+            <nav class="navbar navbar-default">
+                <img width="120" height="50" src="images/22.png "></img>
+            </nav>
+
+
+        </div>
+    </header>
+
+    <!--进度条导航栏-->
+    <div class="container text-center ">
+        <h1>用户信息</h1>
+
+
+        <div class="progressBar">
+            <div class="col-lg-6 col-md-8 col-sm-10 col-xs-8 center-vertical point-box">
+                <div class="point center-block">1</div>
+
+                <div class="points hidden-xs"></div>
+                <div class="points hidden-xs"></div>
+                <div class="points hidden-xs"></div>
+                <div class="points"></div>
+                <div class="points"></div>
+                <div class="points"></div>
+
+                <div class="point center-block">2</div>
+
+                <div class="points hidden-xs"></div>
+                <div class="points hidden-xs"></div>
+                <div class="points hidden-xs"></div>
+                <div class="points"></div>
+                <div class="points"></div>
+                <div class="points"></div>
+
+                <div class="point-active center-block">3</div>
+
+                <div class="points hidden-xs"></div>
+                <div class="points hidden-xs"></div>
+                <div class="points hidden-xs"></div>
+                <div class="points"></div>
+                <div class="points"></div>
+                <div class="points"></div>
+
+                <div class="point center-block">4</div>
+            </div>
+
+
+        </div>
+    </div>
+    <!--注册表单-->
+    <div class="container  text-center  register">
+        <form action="" class="form-horizontal col-lg-12 col-sm-10 col-xs-12">
+            <div class="form-group">
+
+                <div class="col-lg-12 col-sm-12">
+                    <img src="" id="image_icon" alt="" width="138" height="150">
+                    <input class="center-block" id="user_icon" type="file" accept="image/*"
+                        onchange="preImg(this.id,'image_icon',this)" style="display: none" />
+                    <div class="clearfix"></div>
+                    <button type="button" class="btn btn-default" id="choose_icon">选择您的头像</button>
+                </div>
+
+                <div class="col-lg-6">
+
+                    <div class="  text-left inputs">
+                        <label class="control-label">身份证正面</label>
+                    </div>
+                    <div class="users-image inputs">
+                        <div class="user-image-div">
+                            <div class="center-vertical">
+                                <img src="" id="image_id_z" alt="" width="310" height="210">
+                                <input class="center-block" id="idcard_z" type="file" accept="image/*"
+                                    onchange="preImg(this.id,'image_id_z')" style="display: none" />
+                                <div class="clearfix"></div>
+                                <button type="button" class="btn btn-default btn-primary"
+                                    id="choose_idcard_z">点击选择图片</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="  text-left inputs">
+                        <label class="control-label">身份证反面</label>
+                    </div>
+
+                    <div class="users-image inputs">
+                        <div class="user-image-div">
+                            <div class="center-vertical">
+                                <img src="" id="image_id_f" alt="" width="310" height="210">
+                                <input class="center-block" id="idcard_f" type="file" accept="image/*"
+                                    onchange="preImg(this.id,'image_id_f')" style="display: none" />
+                                <div class="clearfix"></div>
+                                <button type="button" class="btn btn-default btn-primary"
+                                    id="choose_idcard_f">点击选择图片</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="  text-left inputs">
+                        <label class="control-label">职业资格证</label>
+                    </div>
+
+                    <div class="users-image inputs">
+                        <div class="user-image-div">
+                            <div class="center-vertical">
+                                <img src="" id="image_career" alt="" width="310" height="210">
+                                <input class="center-block" id="career" type="file" accept="image/*"
+                                    onchange="preImg(this.id,'image_career')" style="display: none" />
+                                <div class="clearfix"></div>
+                                <button type="button" class="btn btn-default btn-primary"
+                                    id="choose_career">点击选择图片</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 其他证书 -->
+                <div class="col-lg-6">
+                    <div class="  text-left inputs">
+                        <label class="control-label">其他证书</label>
+                    </div>
+
+                    <div class="users-image inputs">
+                        <div class="user-image-div">
+                            <div class="center-vertical">
+                                <img src="" id="image_other1" alt="" width="310" height="210">
+                                <input class="center-block" id="other1" type="file" accept="image/*"
+                                    onchange="preImg(this.id,'image_other1')" style="display: none" />
+                                <div class="clearfix"></div>
+                                <button type="button" class="btn btn-default btn-primary"
+                                    id="choose_other1">点击选择图片</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="  text-left inputs">
+                        <label class="control-label">其他证书</label>
+                    </div>
+
+                    <div class="users-image inputs">
+                        <div class="user-image-div">
+                            <div class="center-vertical">
+                                <img src="" id="image_other2" alt="" width="310" height="210">
+                                <input class="center-block" id="other2" type="file" accept="image/*"
+                                    onchange="preImg(this.id,'image_other2')" style="display: none" />
+                                <div class="clearfix"></div>
+                                <button type="button" class="btn btn-default btn-primary"
+                                    id="choose_other2">点击选择图片</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" style="display: none;">
+                    <div class="  text-left inputs">
+                        <label class="control-label">工作简历</label>
+                    </div>
+
+                    <!--   <div class="users-image inputs">
+                    <div class="user-image-div">
+                      <div class="center-vertical">
+                            <img src="" id="image_work" alt="" width="310" height="210">
+                            <input class="center-block" id="work" type="file" accept="image/*" onchange="preImg(this.id,'image_work')" style="display: none" />
+                            <div class="clearfix"></div>
+                            <button type="button" class="btn btn-default btn-primary" id="choose_work">点击选择图片</button>
+                        </div>
+                    </div>
+                </div> -->
+                    <div class="users-image inputs">
+                        <div class="user-image-div">
+                            <div class="center-vertical">
+                                <textarea id="resumes" class="resume center-block form-control " rows="10">
+
+                             </textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="col-lg-12">
+                    <input type="button" id="posts" class="next-button inputs" value="下一步" onclick="postData()">
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <!-- 进度条 -->
+    <div class="progress">
+        <div id="pro" class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+            aria-valuemax="100" style="width: 0%;">
+        </div>
+    </div>
+</body>
+<script>
+
+
+
+    var list = [];
+    //接收上页面传值
+    let username = "";
+    let password = "";
+    $(manyValues);
+    function manyValues() {
+        var url = window.location.search;
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&").map(item => {
+                return item.split("=");
+            });
+            username = strs[0][1];
+            password = strs[1][1];
+            console.log(username, password)
+        }
+    }
+    // 点击上传
+
+    function postData() {
+        var list = this.list;
+        // 判断是否为空
+        var input_cart = document.getElementsByTagName("INPUT");
+
+        for (var i = 0; i < input_cart.length; i++) {
+            if (input_cart[i].value == "" || input_cart[i].value == null) {
+                alert("图片内容不能为空!");
+                input_cart[i].focus();
+                return (false);
+            }
+        }
+        // 新建图片表单
+        var formdata = new FormData();
+        formdata.append("user_icon", $("#user_icon")[0].files[0]);
+        formdata.append("idcard_z", $("#idcard_z")[0].files[0]);
+        formdata.append("idcard_f", $("#idcard_f")[0].files[0]);
+        formdata.append("resume", $("#resumes").val());
+        formdata.append("career", $("#career")[0].files[0]);
+        formdata.append("username", username);
+        formdata.append("other1", $("#other1")[0].files[0])
+        formdata.append("other2", $("#other2")[0].files[0])
+
+        $.ajax({
+            url: "/TalentPools/registeredphotos",
+            type: "POST",
+            data: formdata,
+            contentType: false,
+            processData: false,
+
+            // 上传进度监听
+            xhr: function () {
+                myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) {
+                    myXhr.upload.addEventListener('progress', function (e) {
+                        if (e.lengthComputable) {
+                            var percent = Math.floor(e.loaded / e.total * 100);
+                            if (percent <= 100) {
+                                $("#pro").css("width", percent + "%");
+                                // $("#J_progress_label").html('已上传：'+percent+'%');
+                            }
+                            if (percent >= 100) {
+                                // $("#J_progress_label").html('文件上传完毕，请等待...');
+                                // $("#J_progress_label").addClass('success');
+                            }
+                        }
+                    }, false);
+                }
+                return myXhr;
+            },
+
+            success: function (res) {
+                console.log(res)
+                if (res == "1") {
+                    $("#pro").css("width", "99%");
+                    window.location.href = "./register_step4.html";
+                } else {
+                    alert("注册失败");
+                }
+            }
+        })
+    }
+
+    $(document).ready(function () {
+        //改变input的样式
+        $("#choose_icon").click(function () {
+            $("#user_icon").click();
+        });
+
+        $("#choose_idcard_z").click(function () {
+            $("#idcard_z").click();
+        });
+
+        $("#choose_idcard_f").click(function () {
+            $("#idcard_f").click();
+        });
+
+        $("#choose_work").click(function () {
+            $("#work").click();
+        });
+
+        $("#choose_career").click(function () {
+            $("#career").click();
+        });
+        
+        $("#choose_other1").click(function () {
+            $("#other1").click();
+        });
+        
+        $("#choose_other2").click(function () {
+            $("#other2").click();
+        });
+    });
+
+    //选取本地文件
+    function getFileUrl(sourceId) {
+        var url;
+        if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
+            //限制文件大小
+            if (limitFileSize(sourceId)) {
+                url = document.getElementById(sourceId).value;
+            } else {
+                return;
+            }
+        } else if (navigator.userAgent.indexOf("Firefox") > 0) { // Firefox
+            //限制文件大小
+            if (limitFileSize(sourceId)) {
+                url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+            } else {
+                return;
+            }
+        } else if (navigator.userAgent.indexOf("Chrome") > 0) { // Chrome
+            //限制文件大小
+            if (limitFileSize(sourceId)) {
+                url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+            } else {
+                return;
+            }
+        }
+        return url;
+    }
+
+    // 修改时间：2019/3/2
+    // 修改人：逯**
+    // 添加内容：图片大小限制
+    function limitFileSize(sourceId) {
+        //图片大小限制
+        var fileSize = 0;
+        var fileMaxSize = 2048;//2M
+        fileSize = document.getElementById(sourceId).files.item(0).size;//获取图片大小
+        var size = fileSize / 1024;//转换成KB
+        if (size > fileMaxSize) {
+            alert("文件大小不能大于  2 MB！");
+            return false;
+        } else if (size <= 0) {
+            alert("文件大小不能小于 0 M！");
+            return false;
+        }
+        return true;
+    }
+
+    //显示图片
+    // sourceId: ipnput id,sourceId: image id file: input object
+    function preImg(sourceId, targetId, file) {
+        var url = getFileUrl(sourceId);
+        var imgPre = document.getElementById(targetId);
+        imgPre.src = url;
+    }
+
+</script>
+
+</html>

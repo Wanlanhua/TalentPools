@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/GlobalData.js"></script>
+    <meta charset="UTF-8">
+    <title>注册</title>
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <!--公司logo-->
+            <nav class="navbar navbar-default">
+                <img width="120" height="50" src="images/22.png "></img>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!--进度条导航栏-->
+    <div class="container text-center ">
+        <h1>用户信息</h1>
+
+        <div class="progressBar">
+            <div class="col-lg-6 col-md-8 col-sm-10 col-xs-8 center-vertical point-box">
+                <div class="point-active center-block">1</div>
+
+                <div class="points hidden-xs"></div>
+                <div class="points hidden-xs"></div>
+                <div class="points hidden-xs"></div>
+                <div class="points"></div>
+                <div class="points"></div>
+                <div class="points"></div>
+
+                <div class="point center-block">2</div>
+
+                <div class="points hidden-xs"></div>
+                <div class="points hidden-xs"></div>
+                <div class="points hidden-xs"></div>
+                <div class="points"></div>
+                <div class="points"></div>
+                <div class="points"></div>
+
+                <div class="point center-block">3</div>
+
+                <div class="points hidden-xs"></div>
+                <div class="points hidden-xs"></div>
+                <div class="points hidden-xs"></div>
+                <div class="points"></div>
+                <div class="points"></div>
+                <div class="points"></div>
+
+                <div class="point center-block">4</div>
+            </div>
+        </div>
+    </div>
+
+    <!--注册表单-->
+    <div class="container text-center  register">
+        <form action="register_step2.html" class="form-horizontal col-lg-6 col-sm-10 col-xs-12">
+            <div class="form-group">
+
+                <div class="col-sm-2 ">
+                    <label class="control-label">手机号</label><label style="color:red">*</label>
+                </div>
+
+                <div class="col-sm-9">
+                    <!-- <input class="form-control col-sm-6" type="tel" id="tel" placeholder="请输入手机号"> -->
+                    <input class="form-control col-sm-6" id="tel" type="text" placeholder="请输入手机号码">
+                    <p class="help-block text-right" id="tel_help"></p>
+                </div>
+
+                <div class="col-sm-2">
+                    <label class=" control-label">密码</label><label style="color:red">*</label>
+                </div>
+
+                <div class="col-sm-9">
+                    <input id="passwd" class="form-control col-sm-6" type="password" placeholder="请输入密码">
+                    <p class="help-block text-right" id="passwd_help"></p>
+                </div>
+
+                <div class="col-sm-2">
+                    <label class="control-label">确认密码</label><label style="color:red">*</label>
+                </div>
+
+                <div class="col-sm-9 ">
+                    <input id="confirm" class="form-control col-sm-6" type="password" placeholder="请确认密码">
+                    <p class="help-block text-right" id="confirm_help"></p>
+                </div>
+
+
+                <input type="button" id="next_step" class="next-button inputs" value="下一步">
+
+            </div>
+        </form>
+
+    </div>
+</body>
+
+<script>
+    var register_flag = false;  //判断是否可点击下一步
+    $(document).ready(function () {
+        // 帐号查重
+        $("#tel").blur(function () {
+            // var url = URL+USER_JIAOJIAN;
+            // 判断是否是手机号
+            var _phone = $("#tel").val();
+            if (!(/^[1]([3-9])[0-9]{9}$/.test(_phone))) {
+                // $("#tel_help").text("手机号格式不正确!").addClass("register-danger").removeClass("register-success");
+                alert("手机号格式不正确!");
+                return false;
+            };
+
+            //ajax上传
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                url: '/TalentPools/jiaoyan',
+                data: {
+                    "username": document.getElementById("tel").value,
+                },
+                success: function (res) {
+                    if (res == "0") {
+                        $("#tel_help").text("该帐号可用！").addClass("register-success").removeClass("register-danger");
+                        register_flag = true;
+                    } else if (res == "1") {
+                        $("#tel_help").text("该帐号已被注册!").addClass("register-danger").removeClass("register-success");
+                        register_flag = false;
+                    } else {
+                        alert("网络或程序出错. ");
+                    }
+                }
+            });
+        });
+
+        // 点击下一步的点击事件
+        $("#next_step").click(function () {
+            var username = $("#tel").val().trim();
+            var passwd = $("#passwd").val().trim();
+            var confirm = $("#confirm").val().trim();
+
+            if (register_flag !== true) {
+                $("#tel_help").text("帐号不正确！").addClass("register-danger").removeClass("register-success");
+                return;
+            }
+            // 判断是否为空
+            if (username == "") {
+                $("#tel_help").text("帐号不可为空！").addClass("register-danger").removeClass("register-success");
+                return;
+            }
+
+
+
+            if (passwd == "") {
+                $("#passwd_help").text("密码不可为空！").addClass("register-danger").removeClass("register-success");
+                return;
+            }
+            if (confirm == "") {
+                $("#confirm_help").text("确认密码不可为空！").addClass("register-danger").removeClass("register-success");
+                return;
+            }
+
+
+            if (passwd !== confirm) {
+                $("#confirm_help").text("两次密码输入不同！").addClass("register-danger").removeClass("register-success");
+            } else {
+                window.location.href = "./register_step2.html?username=" + username + "&passwd=" + passwd;
+            }
+        });
+    })
+
+</script>
+
+</html>

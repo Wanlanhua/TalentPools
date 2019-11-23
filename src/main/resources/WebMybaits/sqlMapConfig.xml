@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+
+<!-- 别名定义 -->
+<typeAliases>
+<!-- 批量定义 
+指定包名 自动定义包名 别名名就是类名（首字母大写或者小写都行）
+-->	
+<package  name="com.talentpool.po" />
+</typeAliases>
+
+	<!-- 配置mappers	   使用mybaits和spring整合进行mapper扫描  这里不需要配置了 -->
+	
+</configuration>
