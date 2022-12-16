@@ -8,7 +8,7 @@
 	<name>TalentPools Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<springframework.version>4.3.10.RELEASE</springframework.version>
+		<springframework.version>5.2.20.RELEASE</springframework.version>
 		<logback.version>1.1.8</logback.version>
 		<hibernate.validator.version>5.1.2.Final</hibernate.validator.version>
 		<javax.validation.version>1.1.0.Final</javax.validation.version>
